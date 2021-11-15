@@ -19,8 +19,6 @@ Dominik Kołodziej, Szymon Borowy
 
 1. Build an image:
 `docker build --tag game-of-life-mesa .`
-
 2. Run the image:
 `docker run game-of-life-mesa -p 8521:8521`
-   
 3. Open the browser on address: http://localhost:8521/
