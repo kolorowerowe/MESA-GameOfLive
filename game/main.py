@@ -25,4 +25,5 @@ if __name__ == '__main__':
     chart = ChartModule([{"Label": "Alive", "Color": "Black"}])
 
     server = ModularServer(GameModel, [grid, chart], "Game of Live model",  {"width": 50, "height": 50, "probability": 0.3})
+    server.port = 8521
     server.launch()
