@@ -5,12 +5,14 @@ from mesa.datacollection import DataCollector
 from CellAgent import CellAgent
 from random import random
 import time
+import psutil
 
 
 class GameModel(Model):
 
     description = "This is Conway's Game of Live model. Implemented by Dominik Kołodziej and Szymon Borowy"
-    sum = 0
+    time_sum = 0
+    cpu_sum = 0
     count = 0
 
     def __init__(self, width, height, probability):
@@ -33,11 +35,14 @@ class GameModel(Model):
         end = time.time()
         res = end - start
 
-        self.sum += res
+        self.time_sum += res
         self.count += 1
-        # print(f'Mean time for step: {self.sum / self.count} with {self.count} steps')
+        # print(f'Mean time for step: {self.time_sum / self.count} with {self.count} steps')
 
         self.datacollector.collect(self)
+
+        self.cpu_sum += psutil.cpu_percent()
+        # print(f'Mean CPU usage: {self.cpu_sum / self.count} % with {self.count} steps')
 
     def count_alive(self):
         """
